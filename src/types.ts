@@ -1,22 +1,25 @@
-export type State = any;
-
 export interface Action {
-    [key: string]: any;
     type: string;
+    payload?: any;
 }
+
+export type State = any;
 
 export type Reducer = (state: State | undefined, action: Action) => State;
 
 export interface Store {
-    state: State;
-    listeners: any[];
-    storeReducer(state: State, action: Action): State;
+    storeReducer(state: State,action: Action): State;
     getState(): State;
     dispatch(action: Action): void;
-    subscribe(fun: () => void): () => void;
+    subscribe(subscriber: () => void): () => void;
     replaceReducer(nextReducer: Reducer): void;
+    state: State;
+    listeners: any[];
 }
 
 export interface CombineReducer {
     [keys: string]: State;
 }
+// export type Middleware<State, Action> = (
+//     store: Store
+// ) => (next: (action: Action) => any) => (action: Action) => any;

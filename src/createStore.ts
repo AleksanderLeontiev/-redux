@@ -1,12 +1,13 @@
-import { Store, Reducer, State, Action } from "./types";
+import {Action, Reducer, State, Store} from "./types";
+
 export function createStore(
     reducer: Reducer,
-    preLoadedState?: State,
-): Store {
-    const store: Store = {
+    preLoadedState?: State | undefined,
+   ): Store {
+    return {
         state: preLoadedState,
         listeners: [],
-           storeReducer(state: State, action: Action): State {
+        storeReducer(state: State, action: Action): State {
             return reducer(state, action);
         },
         getState() {
@@ -17,14 +18,13 @@ export function createStore(
 
             this.listeners.forEach((el) => el());
         },
-        subscribe(param) {
-            this.listeners.push(param);
-            return () => this.listeners.splice(0);
+        subscribe(subscriber) {
+            this.listeners.push(subscriber);
+            return () => this.listeners.filter((el) => el !== subscriber);
         },
         replaceReducer(nextReducer: Reducer): void {
             this.storeReducer = nextReducer;
         },
 
     };
-    return store;
 }
