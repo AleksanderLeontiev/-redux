@@ -20,6 +20,3 @@ export interface Store {
 export interface CombineReducer {
     [keys: string]: State;
 }
-// export type Middleware<State, Action> = (
-//     store: Store
-// ) => (next: (action: Action) => any) => (action: Action) => any;
