@@ -3,8 +3,8 @@ import { createStore } from "./createStore";
 describe("functional interface", () => {
   it("returns state based on initial state", () => {
     const state = { name: "Bob" };
-    expect(createStore(() => null).getState()).toBe(undefined);
-    expect(createStore(() => null, state).getState()).toBe(state);
+    expect(createStore(() => undefined).getState()).toBe(undefined);
+    expect(createStore(() => undefined, state).getState()).toBe(state);
   });
 
   it("calculates new state with reducer call", () => {

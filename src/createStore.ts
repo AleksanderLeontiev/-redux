@@ -15,10 +15,9 @@ export function createStore(
     },
     dispatch(action: Action): void {
       this.state = this.storeReducer(this.state, action);
-
-      this.listeners.forEach((el) => el());
+      this.listeners.forEach((subscriber) => subscriber());
     },
-    subscribe(subscriber) {
+    subscribe(subscriber: () => void): () => void {
       this.listeners.push(subscriber);
       return () => this.listeners.filter((el) => el !== subscriber);
     },

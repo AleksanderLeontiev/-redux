@@ -6,11 +6,9 @@ export function combineReducers(
   return (state?: State | undefined, action?: Action): State => {
     const result: State = {};
     Object.keys(reducers).forEach((el) => {
-      if (state) {
-        result[el] = reducers[el](state[el], action);
-      } else {
-        result[el] = reducers[el](state, action);
-      }
+      result[el] = state
+        ? reducers[el](state[el], action)
+        : reducers[el](state, action);
     });
     return result;
   };

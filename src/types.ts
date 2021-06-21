@@ -1,9 +1,9 @@
 export interface Action {
   type: string;
-  payload?: string;
+  payload?: unknown;
 }
 
-export type State = string;
+export type State = any;
 
 export type Reducer = (state: State | undefined, action: Action) => State;
 
