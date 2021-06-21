@@ -17,6 +17,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "@typescript-eslint/no-explicit-any": "off",
     "import/prefer-default-export": "off",
     "jest/valid-title": "off",
     "no-console": "off",
