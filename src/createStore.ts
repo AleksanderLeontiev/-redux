@@ -6,7 +6,7 @@ export function createStore(
 ): Store {
   return {
     state: preLoadedState,
-    listeners:[],
+    listeners: [],
     storeReducer(state: State, action: Action): State {
       return reducer(state, action);
     },
