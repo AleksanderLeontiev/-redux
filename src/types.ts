@@ -14,7 +14,7 @@ export interface Store {
   subscribe(subscriber: () => void): () => void;
   replaceReducer(nextReducer: Reducer): void;
   state: State;
-  listeners: [];
+  listeners: any[];
 }
 
 export interface CombineReducer {

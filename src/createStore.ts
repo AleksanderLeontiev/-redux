@@ -6,7 +6,7 @@ export function createStore(
 ): Store {
   return {
     state: preLoadedState,
-    listeners: [],
+    listeners:[],
     storeReducer(state: State, action: Action): State {
       return reducer(state, action);
     },
@@ -15,7 +15,9 @@ export function createStore(
     },
     dispatch(action: Action): void {
       this.state = this.storeReducer(this.state, action);
-      this.listeners.forEach((subscriber) => subscriber());
+      this.listeners.forEach((subscriber) => {
+        return subscriber();
+      });
     },
     subscribe(subscriber: () => void): () => void {
       this.listeners.push(subscriber);
