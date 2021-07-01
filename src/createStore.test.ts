@@ -45,7 +45,7 @@ describe("functional interface", () => {
     expect(spy).toHaveBeenCalled();
     unsubscribe();
     store.dispatch(action2);
-    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it("change a reducer", () => {

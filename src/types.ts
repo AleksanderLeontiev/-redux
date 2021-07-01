@@ -1,6 +1,7 @@
 export interface Action {
   type: string;
   payload?: unknown;
+  [key: string]: unknown;
 }
 
 export type State = any;
@@ -14,7 +15,7 @@ export interface Store {
   subscribe(subscriber: () => void): () => void;
   replaceReducer(nextReducer: Reducer): void;
   state: State;
-  listeners: any[];
+  listeners: Set<any>;
 }
 
 export interface CombineReducer {

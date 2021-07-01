@@ -6,7 +6,7 @@ export function createStore(
 ): Store {
   return {
     state: preLoadedState,
-    listeners: [],
+    listeners: new Set(),
     storeReducer(state: State, action: Action): State {
       return reducer(state, action);
     },
@@ -20,8 +20,8 @@ export function createStore(
       });
     },
     subscribe(subscriber: () => void): () => void {
-      this.listeners.push(subscriber);
-      return () => this.listeners.filter((el) => el !== subscriber);
+      this.listeners.add(subscriber);
+      return () => this.listeners.delete(subscriber);
     },
     replaceReducer(nextReducer: Reducer): void {
       this.storeReducer = nextReducer;
